@@ -5,10 +5,12 @@ import java.util.Scanner;
 
 public class UserInterface {
     private ArrayList<Game> games;
+    private ArrayList<Team> teams;
     private final Scanner scanner;
 
     public UserInterface(Scanner scanner) {
         this.games = new ArrayList<>();
+        this.teams = new ArrayList<>();
         this.scanner = scanner;
     }
 
@@ -34,8 +36,50 @@ public class UserInterface {
             }
         }
 
-        printGameObjects(games);
+        System.out.println("All data has been added.\nWhich team statistic do you want to know about?");
+        teamInfoUI();
 
+    }
+
+    public void teamInfoUI() {
+        while(true) {
+            System.out.println("Team: ");
+            String teamName = scanner.nextLine();
+            if(teamName.equalsIgnoreCase("End")) {
+                System.out.println("Ending");
+                break;
+            }
+            if(isTeamInList(teams, teamName)) {
+                System.out.println(teams.get(indexOfTeam(teams,teamName)));
+            } else {
+                System.out.println("Invalid team name! Try again");
+                continue;
+            }
+        }
+
+        //printGameObjects(games);
+        printTeamObjects(teams);
+    }
+
+    public boolean isTeamInList(ArrayList<Team> teams, String name) {
+        for(int i=0; i<teams.size();i++) {
+            Team element = teams.get(i);
+            if(name.equalsIgnoreCase(element.getName())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public int indexOfTeam(ArrayList<Team> teams, String name) {
+        int indexVal = 0;
+        for(int i=0; i<teams.size(); i++) {
+            Team element = teams.get(i);
+            if(name.equalsIgnoreCase(element.getName())) {
+                indexVal = i;
+            }
+        }
+        return indexVal;
     }
 
     public void parseFile(Scanner scanner) {
@@ -47,7 +91,6 @@ public class UserInterface {
             String[] elements = line.split(",");
             Game match = parseGameObject(elements);
             games.add(match);
-            System.out.println("Match added");
         }
     }
 
@@ -56,13 +99,20 @@ public class UserInterface {
         String awayTeam = object[1];
         int homeScore = Integer.valueOf(object[2]);
         int awayScore = Integer.valueOf(object[3]);
-        Game match = new Game(homeTeam,awayTeam,homeScore,awayScore);
-        return match;
+        Game newGame = new Game(homeTeam,awayTeam,homeScore,awayScore,teams);
+        newGame.updateTeamObject(teams);
+        return newGame;
     }
 
     public void printGameObjects(ArrayList<Game> games) {
         for(Game game: games) {
-            System.out.println("Game played at " + game.getHomeTeam());
+            System.out.println(game);
+        }
+    }
+
+    public void printTeamObjects(ArrayList<Team> teams) {
+        for(Team team: teams) {
+            System.out.println(team);
         }
     }
 
