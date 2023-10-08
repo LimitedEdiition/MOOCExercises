@@ -55,8 +55,6 @@ public class Team {
 
     @Override
     public String toString() {
-        //return ("Games: " + games + "\nWins: " + wins + "\nLosses: " + losses + "\nTies: " + ties + "\n");
-        return ("Name: " + name + "\nGames: " + games + "\nWins: " + wins + "\nLosses: " + losses + "\nTies: " + ties + "\n");
-
+        return ("Games: " + games + "\nWins: " + wins + "\nLosses: " + losses + "\nTies: " + ties + "\n");
     }
 }

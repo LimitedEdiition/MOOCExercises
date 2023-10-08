@@ -58,7 +58,7 @@ public class UserInterface {
         }
 
         //printGameObjects(games);
-        printTeamObjects(teams);
+        //printTeamObjects(teams);
     }
 
     public boolean isTeamInList(ArrayList<Team> teams, String name) {
