@@ -26,4 +26,9 @@ public class Game {
     public int getAwayScore() {
         return awayScore;
     }
+
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 }
