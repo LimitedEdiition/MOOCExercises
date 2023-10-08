@@ -132,11 +132,9 @@ public class Game {
     public void incrementLoss(ArrayList<Team> teams, String name) {
         Team team = teams.get(getIndexOfTeam(teams, name));
         int losses = team.getLosses();
-        int newLoss = ++losses;
-        team.setLosses(newLoss);
+        team.setLosses(++losses);
         int gamesPlayed = team.getGames();
-        int newGamesPlayed = ++gamesPlayed;
-        team.setGames(newGamesPlayed);
+        team.setGames(++gamesPlayed);
     }
 
     public void incrementTie(ArrayList<Team> teams, String name) {
@@ -150,11 +148,9 @@ public class Game {
     public void incrementWin(ArrayList<Team> teams, String name) {
         Team team = teams.get(getIndexOfTeam(teams, name));
         int wins = team.getWins();
-        int newWins = ++wins;
-        team.setWins(newWins);
+        team.setWins(++wins);
         int gamesPlayed = team.getGames();
-        int newGamesPlayed = ++gamesPlayed;
-        team.setGames(newGamesPlayed);
+        team.setGames(++gamesPlayed);
     }
 
     @Override
